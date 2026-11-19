@@ -6,8 +6,9 @@
   "name": "pisga-site",
   "compatibility_date": "2026-11-19",
   // Wrangler runs this before it reads the assets directory, so `npx wrangler deploy` produces
-  // dist/ by itself. It is a safety net for a deployment whose dashboard has no build command.
-  "build": { "command": "npm run build" },
+  // dist/ by itself, installing dependencies first when they are missing. It is a safety net
+  // for a deployment whose dashboard has no build command.
+  "build": { "command": "node scripts/cloudflare-build.mjs" },
   "assets": {
     // Output of `npm run build`. Security and caching headers come from dist/_headers.
     "directory": "./dist",
