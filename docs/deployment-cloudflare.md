@@ -53,9 +53,11 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 
 | Setting | Value |
 |---|---|
-| Build command | `npm run build` (recommended). As a safety net the repository also builds the site by itself in Cloudflare's builder: `scripts/cloudflare-build.mjs` runs after the dependencies are installed there (it does nothing on a developer's machine), and again from `wrangler.jsonc` before `wrangler deploy`. With the dashboard command set as well, the site is simply built more than once |
+| Build command | `npm run build` (set in the dashboard on 19.11.2026). As a safety net the repository also builds the site by itself in Cloudflare's builder: `scripts/cloudflare-build.mjs` runs after the dependencies are installed there (it does nothing on a developer's machine), and again from `wrangler.jsonc` before `wrangler deploy`. The site is therefore built more than once, which is harmless |
 | Deploy command | `npx wrangler deploy` (the default) |
-| Root directory | empty |
+| Root directory | `/` |
+| Production branch | `main` |
+| Disable builds | off |
 | Build variables and secrets | Not required while `.env.production` holds the values. Use them only to override the file, for example with a separate production project |
 
 - **Production branch.** Under **Settings > Build > Branch control**, the production branch
@@ -72,6 +74,25 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 - Commits to other branches run the preview command and produce a preview address.
   Production is also reachable at the Worker's `workers.dev` address unless that is switched
   off. Review both under the Worker's domain settings, and treat any such address as public.
+
+### Reading the result of a build
+
+Cloudflare builds only when a new commit reaches the repository. Connecting the repository,
+or changing a setting, does not start a build by itself.
+
+| What you see | What it means |
+|---|---|
+| The address shows "Hello world" | The Worker still runs Cloudflare's starter code. No build of this repository has been published yet |
+| "No builds exist yet for this worker" | No commit has arrived since the repository was connected. The next commit on `main` starts the first build |
+| A commit on GitHub with no ✓ or ✗ beside it | Cloudflare did not build that commit |
+| A red ✗ beside a commit | The build failed. Click the ✗, then **Details**, then the **Build ID** link to read the build log |
+| "Workers Observability is Disabled" | That is the log of the running Worker, reached through **View logs**. It is not the build log, and observability does not need to be enabled |
+| Log ends with "missing a `previews` block" | `npx wrangler preview` ran on a commit without the `previews` entry in `wrangler.jsonc` |
+| Log ends with "Could not detect a directory containing static files" | The build ran on a commit without `wrangler.jsonc` |
+| Log ends with "assets.directory ... does not exist" | `wrangler.jsonc` is present but the site was not built before deploying |
+
+The list of builds is at the Worker's address in the dashboard ending in `/production/builds`,
+and the build settings at the address ending in `/production/settings#builds`.
 
 ## B. Pages project (alternative)
 
