@@ -9,6 +9,9 @@
   // dist/ by itself, installing dependencies first when they are missing. It is a safety net
   // for a deployment whose dashboard has no build command.
   "build": { "command": "node scripts/cloudflare-build.mjs" },
+  // Required by `npx wrangler preview`, the command Cloudflare runs for every branch that is
+  // not the production branch. Empty, because a preview needs no settings of its own.
+  "previews": {},
   "assets": {
     // Output of `npm run build`. Security and caching headers come from dist/_headers.
     "directory": "./dist",

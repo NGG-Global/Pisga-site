@@ -53,11 +53,17 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 
 | Setting | Value |
 |---|---|
-| Build command | `npm run build` (recommended). As a safety net, `wrangler.jsonc` also names a build step (`scripts/cloudflare-build.mjs`), which Wrangler runs before deploying; it installs dependencies when they are missing and then builds. This was confirmed with the Wrangler command line on a bare checkout, but Cloudflare's documentation says Workers Builds does not honour that setting, so do not rely on it alone. With both in place the site is simply built twice |
+| Build command | `npm run build` (recommended). As a safety net the repository also builds the site by itself in Cloudflare's builder: `scripts/cloudflare-build.mjs` runs after the dependencies are installed there (it does nothing on a developer's machine), and again from `wrangler.jsonc` before `wrangler deploy`. With the dashboard command set as well, the site is simply built more than once |
 | Deploy command | `npx wrangler deploy` (the default) |
 | Root directory | empty |
 | Build variables and secrets | Not required while `.env.production` holds the values. Use them only to override the file, for example with a separate production project |
 
+- **Production branch.** Under **Settings > Build > Branch control**, the production branch
+  must be `main`. Only pushes to the production branch run the deploy command and update
+  the live address. Pushes to every other branch run `npx wrangler preview` and create a
+  separate preview; that command needs the `previews` block in `wrangler.jsonc`, which may
+  stay empty. A build log that shows `npx wrangler preview` for a commit on `main` means
+  the production branch is set to something else.
 - The `name` in `wrangler.jsonc` must stay equal to the Worker's name in the dashboard.
 - A build that ends with "Could not detect a directory containing static files" was run on
   a commit without `wrangler.jsonc`. A build that ends with "The directory specified by the

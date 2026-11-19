@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:db": "bash supabase/tests/run-local.sh",
-    "provision": "node scripts/provision-users.mjs"
+    "provision": "node scripts/provision-users.mjs",
+    "postinstall": "node scripts/cloudflare-build.mjs --postinstall"
   },
   "dependencies": {
     "@fontsource-variable/heebo": "^5.3.0",
