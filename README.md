@@ -8,7 +8,7 @@ content-management area for programme staff.
 |---|---|
 | Frontend | React, Vite, TypeScript |
 | Backend | Supabase (authentication, Postgres with row-level security, file storage) |
-| Hosting | Cloudflare Pages (static build; see `docs/deployment-cloudflare-pages.md`) |
+| Hosting | Cloudflare (static build, served as a Worker with static assets or as a Pages project; see `docs/deployment-cloudflare.md`) |
 
 ## Current status
 
@@ -21,7 +21,7 @@ content-management area for programme staff.
 | Account provisioning script | Written. Only the list validation (`--dry-run`) has been run |
 | Advisor | Screen and contract built; the advisor itself waits for open decisions (see `docs/open-items.md`). Switched off by default |
 | Project space | Empty state, by decision. Tables for teams and stages are prepared |
-| Cloudflare Pages configuration | Written (`public/_headers`, `.node-version`) and checked with Cloudflare's local Pages emulator. **Not yet deployed** |
+| Cloudflare configuration | Written (`wrangler.jsonc`, `public/_headers`, `.node-version`) and checked with Wrangler's local emulation of a Worker and of Pages. **No successful deployment yet** |
 
 The first run against the development Supabase project is the next step, and is expected to
 surface small adjustments. `docs/open-items.md` lists every assumption made during the build
@@ -60,7 +60,8 @@ src/
   screens/              One file per screen; screens/admin is the staff area
 public/brand/           Logos, graphics and icons from the design hand-off, unchanged
 public/fonts/           Place for the licensed Ploni files (not in the repository; see docs/fonts.md)
-public/_headers         Security and caching headers for Cloudflare Pages
+public/_headers         Security and caching headers for Cloudflare
+wrangler.jsonc          Cloudflare Worker that serves the built site
 supabase/migrations/    Schema, row-level security, storage, reference data
 supabase/tests/         Permission tests and the local test runner
 supabase/teardown/      Removal script for programme end
@@ -85,7 +86,7 @@ docs/                   Set-up, deployment, data deletion, open items
 ## Documentation
 
 - `docs/supabase-setup.md` — preparing the Supabase projects and accounts
-- `docs/deployment-cloudflare-pages.md` — deploying on Cloudflare Pages
+- `docs/deployment-cloudflare.md` — deploying on Cloudflare
 - `docs/data-deletion.md` — removing all Pisga data at programme end
 - `docs/fonts.md` — supplying the licensed brand typeface
 - `docs/open-items.md` — assumptions made, wording awaiting approval, open decisions

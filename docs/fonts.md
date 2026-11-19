@@ -16,8 +16,8 @@ names:
 The build detects the files and declares them automatically (see `vite.config.ts`).
 Until they are present the interface is set in Heebo, the approved fallback.
 
-Because these files are excluded by `.gitignore`, a Cloudflare Pages build from GitHub will
-not include them. See `docs/deployment-cloudflare-pages.md` for how to supply them.
+Because these files are excluded by `.gitignore`, a Cloudflare build from GitHub will not
+include them. See `docs/deployment-cloudflare.md` for how to supply them.
 
 This note is kept in `docs/` and not in `public/fonts/`, because everything under `public/`
 is published with the site.

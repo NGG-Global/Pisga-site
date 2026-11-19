@@ -12,7 +12,7 @@ decision, and the questions that were already open in the design hand-off.
 | Database scripts on Supabase | Verified on local PostgreSQL 16 with stand-ins for Supabase's `auth` and `storage` schemas. Not yet applied to a Supabase project |
 | Provisioning script | Only `--dry-run` has been run |
 | Advisor Edge Function | Placeholder. Not implemented, not deployed, not tested |
-| Cloudflare Pages deployment | Configuration written and checked with Cloudflare's local Pages emulator; no deployment has been made |
+| Cloudflare deployment | Configuration written and checked with Wrangler's local emulation. The Worker connected to the repository has not yet built successfully; its build command and build variables must be set in the dashboard (`docs/deployment-cloudflare.md`) |
 | Brand typeface | No licensed Ploni files yet. A copy marked "free for personal use" from a download site must not be used for this site; a web licence from the foundry is required. The interface is set in Heebo until then |
 | Accessibility | Built to the hand-off's rules (44px targets, focus ring, real controls, text alternatives for charts). No screen-reader or formal audit has been done |
 | Automated browser tests, continuous integration | Not set up. Screens were checked by scripted browser runs during the build, in demo mode |
@@ -26,9 +26,10 @@ They are stated here so that they can be confirmed or changed.
 
 ### Hosting and repository
 
-1. **Cloudflare Pages.** The hand-off records Cloudflare as decided and proposes Workers
-   with Static Assets over Pages. The site is prepared for Pages, as instructed. Nothing in
-   the code depends on that choice: the output in `dist/` is plain static files.
+1. **Cloudflare, Worker or Pages.** The hand-off records Cloudflare as decided and proposes
+   Workers with Static Assets over Pages. Pages was then requested, while the repository
+   was in fact connected to a Worker (`pisga-site`). The repository is prepared for both;
+   one of them must be chosen and the other disconnected.
 2. **The GitHub repository is public.** Brand files and programme details in it are visible
    to anyone. A decision on visibility is needed before further material is added.
 
