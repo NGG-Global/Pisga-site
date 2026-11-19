@@ -45,7 +45,7 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 
 | Setting | Value |
 |---|---|
-| Build command | `npm run build` (recommended). As a safety net, `wrangler.jsonc` also names this command, and Wrangler runs it before deploying; this was confirmed with the Wrangler command line, but Cloudflare's documentation says Workers Builds does not honour that setting, so do not rely on it alone. With both in place the site is simply built twice |
+| Build command | `npm run build` (recommended). As a safety net, `wrangler.jsonc` also names a build step (`scripts/cloudflare-build.mjs`), which Wrangler runs before deploying; it installs dependencies when they are missing and then builds. This was confirmed with the Wrangler command line on a bare checkout, but Cloudflare's documentation says Workers Builds does not honour that setting, so do not rely on it alone. With both in place the site is simply built twice |
 | Deploy command | `npx wrangler deploy` (the default) |
 | Root directory | empty |
 | Build variables and secrets | The three `VITE_*` variables above. They are available to the build only, which is what is needed |
