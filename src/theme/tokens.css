@@ -1,0 +1,23 @@
+/* Maccabi Pisga design tokens that are not brand colours: spacing, shape, motion, type.
+   Source: tokens/pisga-tokens.css in the design hand-off. Brand colours live in brand.ts. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --duration-fast: 160ms;
+  --duration-base: 320ms;
+  --duration-slow: 640ms;
+  --duration-reveal: 960ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
+  --font-text: Ploni, 'Heebo Variable', Heebo, 'Arial Hebrew', Arial, sans-serif;
+  --control-height: 44px;
+  --column: 480px;
+}

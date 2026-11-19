@@ -1,0 +1,14 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+.vercel
+*.log
+.DS_Store
+# Licensed font files are supplied separately by NGG and are not committed.
+public/fonts/*.woff2
+public/fonts/*.otf
+# Participant lists contain personal data and must never be committed.
+scripts/*.csv
+!scripts/participants.example.csv
