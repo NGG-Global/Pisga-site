@@ -45,12 +45,15 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 
 | Setting | Value |
 |---|---|
-| Build command | `npm run build` — **must be set**. Without it `dist/` does not exist and the deployment fails. Workers Builds does not run a build command written in the Wrangler file |
+| Build command | `npm run build` (recommended). As a safety net, `wrangler.jsonc` also names this command, and Wrangler runs it before deploying; this was confirmed with the Wrangler command line, but Cloudflare's documentation says Workers Builds does not honour that setting, so do not rely on it alone. With both in place the site is simply built twice |
 | Deploy command | `npx wrangler deploy` (the default) |
 | Root directory | empty |
 | Build variables and secrets | The three `VITE_*` variables above. They are available to the build only, which is what is needed |
 
 - The `name` in `wrangler.jsonc` must stay equal to the Worker's name in the dashboard.
+- A build that ends with "Could not detect a directory containing static files" was run on
+  a commit without `wrangler.jsonc`. A build that ends with "The directory specified by the
+  assets.directory field does not exist" has the file but did not run the build step.
 - Workers Builds uses the Wrangler version pinned in `package.json`.
 - Commits to other branches run the preview command and produce a preview address.
   Production is also reachable at the Worker's `workers.dev` address unless that is switched
