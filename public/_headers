@@ -1,0 +1,15 @@
+# Response headers for Cloudflare Pages. Applied to static assets, which is everything this site serves.
+# Each line is limited to 2,000 characters and the file to 100 rules.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  X-Robots-Tag: noindex, nofollow
+
+# Vite gives these files a content hash in their name, so they can be cached for a long time.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
