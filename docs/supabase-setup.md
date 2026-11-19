@@ -33,7 +33,7 @@ In the project's Data API settings, add `pisga` to the exposed schemas. Do **not
 - Enable the e-mail provider with e-mail and password.
 - Set the minimum password length to **10**, to match the app.
 - Site URL: the app's production address.
-- Redirect URLs: add `https://<domain>/reset-password` for production, for Vercel preview
+- Redirect URLs: add `https://<domain>/reset-password` for production, for Cloudflare Pages preview
   addresses if they are to be used against the development project, and
   `http://localhost:5173/reset-password` on the development project.
 - E-mail delivery: Supabase's built-in sender is intended for testing. Configure a proper
@@ -45,7 +45,7 @@ In the project's Data API settings, add `pisga` to the exposed schemas. Do **not
 
 The app needs the project URL and the **publishable** key (`VITE_SUPABASE_URL`,
 `VITE_SUPABASE_PUBLISHABLE_KEY`). The **secret** key is used only by the provisioning script,
-on a trusted machine. Never place it in Vercel's `VITE_*` variables or in the repository.
+on a trusted machine. Never place it in the Cloudflare Pages project's `VITE_*` variables or in the repository.
 
 ## 5. Create the accounts
 

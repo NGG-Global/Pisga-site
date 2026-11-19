@@ -8,7 +8,7 @@ content-management area for programme staff.
 |---|---|
 | Frontend | React, Vite, TypeScript |
 | Backend | Supabase (authentication, Postgres with row-level security, file storage) |
-| Hosting | Vercel (static build; see `docs/deployment-vercel.md`) |
+| Hosting | Cloudflare Pages (static build; see `docs/deployment-cloudflare-pages.md`) |
 
 ## Current status
 
@@ -21,7 +21,7 @@ content-management area for programme staff.
 | Account provisioning script | Written. Only the list validation (`--dry-run`) has been run |
 | Advisor | Screen and contract built; the advisor itself waits for open decisions (see `docs/open-items.md`). Switched off by default |
 | Project space | Empty state, by decision. Tables for teams and stages are prepared |
-| Vercel configuration | Written (`vercel.json`). **Not yet deployed** |
+| Cloudflare Pages configuration | Written (`public/_headers`, `.node-version`) and checked with Cloudflare's local Pages emulator. **Not yet deployed** |
 
 The first run against the development Supabase project is the next step, and is expected to
 surface small adjustments. `docs/open-items.md` lists every assumption made during the build
@@ -59,7 +59,8 @@ src/
   components/           Shell, tab bar, journey mountain, radar chart
   screens/              One file per screen; screens/admin is the staff area
 public/brand/           Logos, graphics and icons from the design hand-off, unchanged
-public/fonts/           Place for the licensed Ploni files (not in the repository)
+public/fonts/           Place for the licensed Ploni files (not in the repository; see docs/fonts.md)
+public/_headers         Security and caching headers for Cloudflare Pages
 supabase/migrations/    Schema, row-level security, storage, reference data
 supabase/tests/         Permission tests and the local test runner
 supabase/teardown/      Removal script for programme end
@@ -84,6 +85,7 @@ docs/                   Set-up, deployment, data deletion, open items
 ## Documentation
 
 - `docs/supabase-setup.md` — preparing the Supabase projects and accounts
-- `docs/deployment-vercel.md` — deploying on Vercel
+- `docs/deployment-cloudflare-pages.md` — deploying on Cloudflare Pages
 - `docs/data-deletion.md` — removing all Pisga data at programme end
+- `docs/fonts.md` — supplying the licensed brand typeface
 - `docs/open-items.md` — assumptions made, wording awaiting approval, open decisions

@@ -3,7 +3,7 @@ dist
 .env
 .env.local
 .env.*.local
-.vercel
+.wrangler
 *.log
 .DS_Store
 # Licensed font files are supplied separately by NGG and are not committed.

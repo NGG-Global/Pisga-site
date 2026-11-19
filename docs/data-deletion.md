@@ -15,7 +15,7 @@ before the programme ends.
 | Session documents | Supabase Storage, bucket `pisga-materials` |
 | Accounts (e-mail addresses, password hashes) | Supabase `auth.users`, shared with other NGG apps |
 | Advisor conversations | At the advisor provider, once the advisor exists (retention is an open item) |
-| The site | Vercel project and its domain |
+| The site | Cloudflare Pages project and its domain |
 | Participant list used for provisioning | Wherever it was kept locally; not in the repository |
 
 The app stores nothing on participants' devices apart from the sign-in session, which ends
@@ -26,7 +26,7 @@ they can export it first.
 ## Steps
 
 1. **Announce.** Give participants a date and remind them of the export in `יומן מסע`.
-2. **Take the site offline.** Remove the domain from the Vercel project or delete the project.
+2. **Take the site offline.** Remove the custom domain and delete the Cloudflare Pages project. Deleting the project also removes its `*.pages.dev` address and all preview deployments.
 3. **Run `supabase/teardown/pisga_teardown.sql` step by step.** It is written to be run one
    step at a time:
    1. Record the number of accounts per role.
@@ -43,7 +43,7 @@ they can export it first.
    Establish that period and record the date on which the last backup containing Pisga
    data expires. Until then the data is not fully gone.
 6. **Other copies.** Delete the participant list, any exports made for support purposes,
-   and the Vercel environment variables. Remove the redirect URLs from Supabase.
+   and the Cloudflare Pages environment variables. Remove the redirect URLs from Supabase.
 7. **Record.** Note who carried out each step and when, and keep the record with the
    programme file.
 

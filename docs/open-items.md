@@ -12,7 +12,7 @@ decision, and the questions that were already open in the design hand-off.
 | Database scripts on Supabase | Verified on local PostgreSQL 16 with stand-ins for Supabase's `auth` and `storage` schemas. Not yet applied to a Supabase project |
 | Provisioning script | Only `--dry-run` has been run |
 | Advisor Edge Function | Placeholder. Not implemented, not deployed, not tested |
-| Vercel deployment | Configuration written; no deployment has been made |
+| Cloudflare Pages deployment | Configuration written and checked with Cloudflare's local Pages emulator; no deployment has been made |
 | Brand typeface | No licensed Ploni files yet. A copy marked "free for personal use" from a download site must not be used for this site; a web licence from the foundry is required. The interface is set in Heebo until then |
 | Accessibility | Built to the hand-off's rules (44px targets, focus ring, real controls, text alternatives for charts). No screen-reader or formal audit has been done |
 | Automated browser tests, continuous integration | Not set up. Screens were checked by scripted browser runs during the build, in demo mode |
@@ -26,8 +26,9 @@ They are stated here so that they can be confirmed or changed.
 
 ### Hosting and repository
 
-1. **Vercel instead of Cloudflare.** The hand-off records Cloudflare as decided; the build
-   was prepared for Vercel as requested. To be confirmed with the programme owner.
+1. **Cloudflare Pages.** The hand-off records Cloudflare as decided and proposes Workers
+   with Static Assets over Pages. The site is prepared for Pages, as instructed. Nothing in
+   the code depends on that choice: the output in `dist/` is plain static files.
 2. **The GitHub repository is public.** Brand files and programme details in it are visible
    to anyone. A decision on visibility is needed before further material is added.
 
@@ -117,9 +118,9 @@ All interface copy is in `src/content/strings.ts`.
 |---|---|---|
 | 1 | Advisor: voice, written chat, or both | Decides the advisor screen, the data model for conversations and the Edge Function. The current screen assumes written chat |
 | 2 | Approval of Hebrew labels; English session titles | Text changes in `strings.ts` and in the session data |
-| 3 | Maccabi's approval of the branding; data location; sending programme content to an AI provider | Branding changes are confined to `src/theme/brand.ts`. Data-location requirements bear on the Supabase region, on Vercel and on the advisor provider |
+| 3 | Maccabi's approval of the branding; data location; sending programme content to an AI provider | Branding changes are confined to `src/theme/brand.ts`. Data-location requirements bear on the Supabase region and on the advisor provider; Cloudflare serves only the static files |
 | 4 | Retention of advisor conversations at the provider | Must be settled before the advisor is switched on |
 | 5 | Is the journal required on 30.12.2026 | The journal is built; reflection questions for session 1 must be entered before that date |
 | 6 | E-mail service for password set-up and reset | Required before accounts are announced to participants |
-| 7 | The domain | Needed for Vercel, for Supabase redirect URLs and for the advisor function's allowed origin |
+| 7 | The domain | Needed for Cloudflare Pages, for Supabase redirect URLs and for the advisor function's allowed origin |
 | 8 | The device participants mostly use | Desktop currently shows the phone layout in a centred column |
