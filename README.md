@@ -17,7 +17,7 @@ content-management area for programme staff.
 | All participant screens from the design hand-off | Built. Checked visually against the design screenshots, in demo mode |
 | Content management for staff (sessions, documents, questionnaire, reflection questions, advisor texts) | Built. No design existed; it follows the design system |
 | Database schema, row-level security, storage rules | Written. **Verified on a local PostgreSQL** with permission tests for every role (`npm run test:db`) |
-| Connection to Supabase (`src/data/supabaseApi.ts`) | Written and type-checked. **Not yet run against a Supabase project**, because no project credentials were available during the build |
+| Connection to Supabase (`src/data/supabaseApi.ts`) | Written and type-checked. The connection and the sign-in call were checked against the project. **Data access is not yet tested**: the database scripts have not been applied there and the `pisga` schema is not yet exposed |
 | Account provisioning script | Written. Only the list validation (`--dry-run`) has been run |
 | Advisor | Screen and contract built; the advisor itself waits for open decisions (see `docs/open-items.md`). Switched off by default |
 | Project space | Empty state, by decision. Tables for teams and stages are prepared |

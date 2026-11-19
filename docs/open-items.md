@@ -7,12 +7,13 @@ decision, and the questions that were already open in the design hand-off.
 
 | Item | State |
 |---|---|
-| Supabase connection (`src/data/supabaseApi.ts`) | Type-checked only. Not run against a Supabase project; no credentials were available. Expect small fixes on first contact |
+| Supabase connection (`src/data/supabaseApi.ts`) | The project is reachable with the publishable key and a refused sign-in is handled correctly. Reading and writing data is untested until the database scripts are applied and the `pisga` schema is exposed. Expect small fixes at that point |
+| Public sign-up on the Supabase project | **Still enabled** when checked on 19.11.2026. It must be disabled before any account is created (mandatory rule for the shared project) |
 | Database scripts on Supabase | Verified on local PostgreSQL 16 with stand-ins for Supabase's `auth` and `storage` schemas. Not yet applied to a Supabase project |
 | Provisioning script | Only `--dry-run` has been run |
 | Advisor Edge Function | Placeholder. Not implemented, not deployed, not tested |
 | Vercel deployment | Configuration written; no deployment has been made |
-| Brand typeface | Ploni files not supplied; the interface is set in Heebo until they are |
+| Brand typeface | No licensed Ploni files yet. A copy marked "free for personal use" from a download site must not be used for this site; a web licence from the foundry is required. The interface is set in Heebo until then |
 | Accessibility | Built to the hand-off's rules (44px targets, focus ring, real controls, text alternatives for charts). No screen-reader or formal audit has been done |
 | Automated browser tests, continuous integration | Not set up. Screens were checked by scripted browser runs during the build, in demo mode |
 | Editing a session's speakers | The list is replaced in two database calls, not one transaction. A failure between them would leave the session without speakers until saved again |
