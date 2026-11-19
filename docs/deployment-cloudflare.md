@@ -24,6 +24,14 @@ the dashboard as you go.
 
 ## Variables needed at build time (both routes)
 
+The values for the production build are kept in `.env.production` in the repository, so a
+Cloudflare build works without any variable set in the dashboard. Both values are public by
+design. A **build** variable of the same name in the dashboard takes priority over the file.
+
+Do not use the Worker's general **Variables and Secrets** section, and do not add a `vars`
+block to `wrangler.jsonc` when the dashboard suggests it: those are values for code running
+in a Worker. This site has no such code, and they never reach the built files (tested).
+
 | Variable | Production | Non-production branches |
 |---|---|---|
 | `VITE_SUPABASE_URL` | Production project URL | Development project URL |
@@ -48,7 +56,7 @@ In the Cloudflare dashboard, open the Worker `pisga-site` and its build settings
 | Build command | `npm run build` (recommended). As a safety net, `wrangler.jsonc` also names a build step (`scripts/cloudflare-build.mjs`), which Wrangler runs before deploying; it installs dependencies when they are missing and then builds. This was confirmed with the Wrangler command line on a bare checkout, but Cloudflare's documentation says Workers Builds does not honour that setting, so do not rely on it alone. With both in place the site is simply built twice |
 | Deploy command | `npx wrangler deploy` (the default) |
 | Root directory | empty |
-| Build variables and secrets | The three `VITE_*` variables above. They are available to the build only, which is what is needed |
+| Build variables and secrets | Not required while `.env.production` holds the values. Use them only to override the file, for example with a separate production project |
 
 - The `name` in `wrangler.jsonc` must stay equal to the Worker's name in the dashboard.
 - A build that ends with "Could not detect a directory containing static files" was run on
